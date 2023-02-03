@@ -24,16 +24,17 @@ export const Navbar = () => {
                     <div>Resources</div>
                 </div>
                 <div className={styles.auth}>
-                    <Link className={styles.loginLnk} href={'/signinsignup'}>
-                        <div className={styles.loginBtn}>Log In</div>
-                    </Link>
                     <Link className={styles.signupLnk} href={'/signinsignup'}>
-                        <div className={styles.signupBtn}>Get started</div>
+                        <div className={styles.signupBtn}>Login/signup</div>
                     </Link>
                 </div>
             </div>
         </div>
     )
+}
+
+export async function getServerSideProps(context) {
+    console.log('hello');
 }
 
 

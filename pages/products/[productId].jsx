@@ -5,7 +5,7 @@ export default function ProductDetails() {
     return <h1>product detail of if: {productId}</h1>
 }
 
-export let getServerSideProps = () => {
-    const { productId } = useRouter().query
-    let data = fetch(`https://localhost`)
-}
+// export let getServerSideProps = () => {
+//     const { productId } = useRouter().query
+//     // let data = fetch(`https://localhost`)
+// }
