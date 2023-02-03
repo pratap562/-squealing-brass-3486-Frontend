@@ -2,20 +2,56 @@
 // import Image from 'next/image'
 // import { Inter } from '@next/font/google'
 // import styles from '@/styles/Home.module.css'
+import cookie from 'cookie';
 import { Navbar } from '@/component/navbar'
-import { Front } from '@/component/front'
+import Front from '@/component/front'
 import { useState } from 'react'
-// const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({ justLogdin }) {
   const [count, setcount] = useState(0)
   return (
     <div>
       <Navbar></Navbar>
-      <Front></Front>
+      <Front justLogdin={justLogdin}></Front>
     </div>
   )
 }
+
+export async function getServerSideProps(context) {
+  console.log(process.env.BACKEND_URL, 'hello');
+  const cookies = cookie.parse(context.req.headers.cookie || '');
+  context.res.setHeader('Set-Cookie', cookie.serialize('justLogdin', '', {
+    maxAge: -1, // make the cookie expired
+    path: '/', // the path
+  }));
+
+  // console.log(cookies, 'bello', cookies.justLogdin);
+
+  // let data = await fetch(`${process.env.BACKEND_URL}/islogdin`, {
+  //   method: "GET",
+  //   headers: {
+  //     authorization: `bearer ${cookies.token}`,
+  //     authorization2: `bearer ${cookies.refresh_token}`,
+  //   }
+  // })
+  // data = await data.json()
+  // console.log(data, 'dataaa');
+  if (cookies.justLogdin == 'true') {
+    return {
+      props: {
+        justLogdin: true
+      }
+    }
+  } else {
+    return {
+      props: {
+        justLogdin: false
+      }
+    }
+  }
+
+}
+
 
 // <Head>
 //         <title>Create Next App</title>
