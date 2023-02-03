@@ -6,7 +6,6 @@ import cookie from 'cookie';
 import { Navbar } from '@/component/navbar'
 import Front from '@/component/front'
 import { useState } from 'react'
-// const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ justLogdin }) {
   const [count, setcount] = useState(0)
@@ -18,7 +17,7 @@ export default function Home({ justLogdin }) {
   )
 }
 
-export let getServerSideProps = async (context) => {
+export async function getServerSideProps(context) {
   console.log(process.env.BACKEND_URL, 'hello');
   const cookies = cookie.parse(context.req.headers.cookie || '');
   context.res.setHeader('Set-Cookie', cookie.serialize('justLogdin', '', {

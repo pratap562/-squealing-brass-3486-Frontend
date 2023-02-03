@@ -26,7 +26,7 @@ const handelSignup = () => {
     //handel sigup
     console.log('handel sign up');
 }
-export default ({ isSignup, signupValue, signupPage }) => {
+export default function Mainn({ isSignup, signupValue, signupPage }) {
 
     console.log(signupValue, 'bawal 3 se pehle');
     console.log(signupValue, 'bawal 3');
@@ -131,7 +131,7 @@ export default ({ isSignup, signupValue, signupPage }) => {
 }
 
 
-export let getServerSideProps = async (context) => {
+export async function getServerSideProps(context) {
     // console.log(process.env.BACKEND_URL);
     const cookies = cookie.parse(context.req.headers.cookie || '');
     console.log(cookies);
